@@ -3,4 +3,4 @@ project(DSwet1)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(DSwet1 main.cpp)
+add_executable(DSwet1 main.cpp AVLTree.h)
