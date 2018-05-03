@@ -11,7 +11,7 @@ typedef enum {REMOVE_SUCCESS,REMOVE_NOT_FOUND} RemoveResult;
 template <class Key,class Data,class Compare>
 class AVLTree {
 public:
-    explicit AVLTree(Compare &c):root(NULL),key_compare(c) {}
+    explicit AVLTree(const Compare &c):root(NULL),key_compare(c) {}
     InsertResult insert(const Key &k,const Data &d) {
         if(!root) {
             root=new AVLTreeNode(k,d,key_compare);
@@ -54,8 +54,8 @@ private:
                 value=new Data(d);
             }
 
-            AVLTreeNode(const Key &k, const Data &d, Compare &c):key(k),key_compare(c), left_son(NULL),right_son(NULL),
-                                                             father(NULL),height(1),balance(0){
+            AVLTreeNode(const Key &k, const Data &d, const Compare &c):key(k),key_compare(c), left_son(NULL),
+                                                              right_son(NULL), father(NULL), height(1), balance(0){
                 value=new Data(d);
             }
 
@@ -80,7 +80,7 @@ private:
                 }
                 }
                 this->updateHeightAndBalance();
-                if(balance==2 || balance == -2) roll();
+                roll();
                 return INSERT_SUCCESS;
             }
 
